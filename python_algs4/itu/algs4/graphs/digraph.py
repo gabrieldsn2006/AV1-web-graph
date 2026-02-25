@@ -207,11 +207,11 @@ class Digraph:
             return 0.0
         return self._E / (self._V * (self._V - 1))
 
-def is_multi_digraph(g: Digraph):
+def is_multi_digraph(G: Digraph, first_index=0):
     """Returns true if the graph g is a multi-digraph, false otherwise."""
-    for v in range(g.V()):
+    for v in range(first_index, G.V()+first_index):
         seen = set()
-        for w in g.adj(v):
+        for w in G.adj(v):
             if w in seen:
                 return True
             seen.add(w)
