@@ -202,29 +202,20 @@ class Digraph:
 
         return "".join(s)
     
-    def in_degree_list(self):
-        s = [f"{self._V} vertices, {self._E} edges\n"]
-        for v in range(1, self._V+1):
-            s.append(f"{v}: {self.in_degree(v)}\n")
-        return "".join(s)
-    
-    def out_degree_list(self):
-        s = [f"{self._V} vertices, {self._E} edges\n"]
-        for v in range(1, self._V+1):
-            s.append(f"{v}: {self.out_degree(v)}\n")
-        return "".join(s)
-    
-    def degree_list(self):
-        s = [f"{self._V} vertices, {self._E} edges\n"]
-        for v in range(1, self._V+1):
-            s.append(f"{v}: {self.degree(v)}\n")
-        return "".join(s)
-    
     def density(self):
         if self._V <= 1:
             return 0.0
         return self._E / (self._V * (self._V - 1))
 
+def is_multi_digraph(g: Digraph):
+    """Returns true if the graph g is a multi-digraph, false otherwise."""
+    for v in range(g.V()):
+        seen = set()
+        for w in g.adj(v):
+            if w in seen:
+                return True
+            seen.add(w)
+    return False
 
 if __name__ == "__main__":
     # Create stream from file or the standard input,
