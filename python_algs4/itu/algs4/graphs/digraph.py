@@ -212,7 +212,7 @@ def is_multi_digraph(G: Digraph, first_index=0):
     for v in range(first_index, G.V()+first_index):
         seen = set()
         for w in G.adj(v):
-            if w in seen:
+            if w in seen or w == v:
                 return True
             seen.add(w)
     return False
